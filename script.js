@@ -80,7 +80,8 @@
     submit.textContent = 'Sending…';
     setStatus('');
 
-    fetch('https://formsubmit.co/ajax/' + email, {
+    // FormSubmit alias for service@win-net.co.uk, so the address isn't exposed in the form endpoint
+    fetch('https://formsubmit.co/ajax/527b494e88e90ac37d178a58eb384f8e', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(payload)
