@@ -1,7 +1,18 @@
 # Putting the Winet website live on win-net.co.uk
 
-The site is published by GitHub Pages. Every push to this repository rebuilds it automatically
-(see `.github/workflows/pages.yml`). Three one-off steps are needed.
+The site is published by GitHub Pages (see `.github/workflows/pages.yml`).
+
+## How changes go live
+
+| Branch    | Purpose                                                        |
+|-----------|----------------------------------------------------------------|
+| `staging` | Work in progress. Make and review changes here. Not published. |
+| `main`    | The live site. Every push to `main` publishes to win-net.co.uk. |
+
+To publish: open a pull request from `staging` into `main` and merge it. The site updates a few
+minutes later.
+
+## One-off setup
 
 ## 1. Allow GitHub to host it
 
@@ -18,6 +29,9 @@ Pick one:
 GitHub → this repository → **Settings → Pages**:
 
 1. **Source:** choose **GitHub Actions**.
+   Also make sure `main` is the default branch (**Settings → General → Default branch**).
+   GitHub only lets the default branch publish to Pages unless you change the
+   `github-pages` environment rules.
 2. **Custom domain:** enter `win-net.co.uk` and click **Save**.
 3. Go to the **Actions** tab, open **Publish website**, and click **Run workflow**.
 4. Once the DNS below has taken effect, come back and tick **Enforce HTTPS**.
