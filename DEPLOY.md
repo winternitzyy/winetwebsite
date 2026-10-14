@@ -1,6 +1,8 @@
 # Putting the Winet website live on win-net.co.uk
 
-The site is published by GitHub Pages (see `.github/workflows/pages.yml`).
+The site is published by GitHub Pages, straight from the `main` branch (Settings → Pages →
+Source: **Deploy from a branch**, branch `main`, folder `/ (root)`). The empty `.nojekyll` file
+tells GitHub to serve the files as they are.
 
 ## How changes go live
 
@@ -28,13 +30,9 @@ Pick one:
 
 GitHub → this repository → **Settings → Pages**:
 
-1. **Source:** choose **GitHub Actions**.
-   Also make sure `main` is the default branch (**Settings → General → Default branch**).
-   GitHub only lets the default branch publish to Pages unless you change the
-   `github-pages` environment rules.
+1. **Source:** choose **Deploy from a branch**, then branch **main**, folder **/ (root)**, and Save.
 2. **Custom domain:** enter `win-net.co.uk` and click **Save**.
-3. Go to the **Actions** tab, open **Publish website**, and click **Run workflow**.
-4. Once the DNS below has taken effect, come back and tick **Enforce HTTPS**.
+3. Once the DNS below has taken effect, come back and tick **Enforce HTTPS**.
 
 ## 3. Point the domain at GitHub
 
