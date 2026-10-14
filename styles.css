@@ -238,10 +238,10 @@ p { margin: 0 0 1em; }
 .contact-form .invalid { border-color: #c0392b; }
 .contact-form .btn { justify-self: start; }
 .form-status { margin: 0; min-height: 1.5em; font-weight: 600; color: var(--blue); }
-.copy-email {
-  font: inherit; color: var(--orange-dark); background: none; border: 0; padding: 0;
-  text-decoration: underline; cursor: pointer; user-select: all;
-}
+.form-status.is-error { color: #b42318; }
+.contact-form .btn:disabled { opacity: .7; cursor: wait; transform: none; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.contact-list address { font-style: normal; color: #fff; font-weight: 600; line-height: 1.5; }
 
 /* Soft orange glow that follows the mouse (or a finger on phones) */
 .cursor-glow {
