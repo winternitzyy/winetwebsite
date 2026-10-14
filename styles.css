@@ -78,7 +78,7 @@ p { margin: 0 0 1em; }
 
 /* Header */
 .site-header {
-  position: sticky; top: 0; z-index: 50;
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
   background: rgba(255, 255, 255, .92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
@@ -221,13 +221,13 @@ p { margin: 0 0 1em; }
 .site-footer a { color: #cfd8e1; }
 
 /* Reveal on scroll */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.in { opacity: 1; transform: none; }
+.reveal { transform: translateY(14px); transition: transform .6s ease; }
+.reveal.in { transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero-art img { animation: none; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal { transform: none; transition: none; }
 }
 
 /* Responsive */
