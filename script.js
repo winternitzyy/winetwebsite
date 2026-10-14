@@ -61,6 +61,62 @@
     var subject = 'Website enquiry from ' + data.get('name') + (data.get('company') ? ' (' + data.get('company') + ')' : '');
     var body = data.get('message') + '\n\n' + data.get('name') + '\n' + data.get('email');
     window.location.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    status.textContent = 'Thanks! Your email app should open with your message ready to send.';
+    // Many computers have no email app set up, so never claim it worked: give the address to copy too
+    status.innerHTML = '';
+    status.append('If your email app didn’t open, copy our address and send it from your usual email: ');
+    var copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'copy-email';
+    copy.textContent = email;
+    copy.addEventListener('click', function () {
+      var done = function () { copy.textContent = 'Copied ' + email; };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(email).then(done, function () { window.getSelection().selectAllChildren(copy); });
+      } else {
+        window.getSelection().selectAllChildren(copy);
+      }
+    });
+    status.append(copy);
   });
+
+  // Orange glow: trails the mouse on computers, follows a finger on touch screens
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    glow.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(glow);
+
+    var x = window.innerWidth / 2, y = window.innerHeight / 3;
+    var tx = x, ty = y, running = false, hideTimer;
+
+    var frame = function () {
+      x += (tx - x) * 0.14;
+      y += (ty - y) * 0.14;
+      glow.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) translate(-50%,-50%)';
+      if (Math.abs(tx - x) > 0.5 || Math.abs(ty - y) > 0.5) requestAnimationFrame(frame);
+      else running = false;
+    };
+    var moveTo = function (px, py) {
+      tx = px; ty = py;
+      glow.classList.add('on');
+      if (!running) { running = true; requestAnimationFrame(frame); }
+    };
+
+    window.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'mouse') moveTo(e.clientX, e.clientY);
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', function () { glow.classList.remove('on'); });
+
+    var onTouch = function (e) {
+      var t = e.touches[0];
+      if (!t) return;
+      clearTimeout(hideTimer);
+      moveTo(t.clientX, t.clientY);
+    };
+    window.addEventListener('touchstart', onTouch, { passive: true });
+    window.addEventListener('touchmove', onTouch, { passive: true });
+    window.addEventListener('touchend', function () {
+      hideTimer = setTimeout(function () { glow.classList.remove('on'); }, 900);
+    }, { passive: true });
+  }
 })();
