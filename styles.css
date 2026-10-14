@@ -241,7 +241,6 @@ p { margin: 0 0 1em; }
 .form-status.is-error { color: #b42318; }
 .contact-form .btn:disabled { opacity: .7; cursor: wait; transform: none; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
-.contact-list address { font-style: normal; color: #fff; font-weight: 600; line-height: 1.5; }
 
 /* Soft orange glow that follows the mouse (or a finger on phones) */
 .cursor-glow {
