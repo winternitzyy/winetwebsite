@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Winet | Caring for your IT</title>
-  <meta name="description" content="Winet is an IT support company that cares for its clients. We go straight to the core of the issue, with no jargon and no mumbo jumbo.">
+  <meta name="description" content="Winet has spent over a decade looking after IT for schools and companies across the UK. We go straight to the core of the issue, with no jargon and no mumbo jumbo.">
   <meta name="theme-color" content="#f47722">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/winet-icon.png">
@@ -29,6 +29,7 @@
       </button>
       <nav id="site-nav" class="site-nav">
         <a href="#services">Services</a>
+        <a href="#clients">Who we help</a>
         <a href="#approach">How we work</a>
         <a href="#about">About</a>
         <a class="btn btn-small" href="#contact">Get in touch</a>
@@ -50,18 +51,28 @@
           </div>
         </div>
         <div class="hero-art" aria-hidden="true">
-          <img src="assets/winet-icon.png" alt="" width="256" height="256">
-          <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+          <img src="assets/winet-w.png" alt="" width="400" height="400">
+          <svg class="hero-dots" viewBox="0 0 100 100">
+            <circle cx="47.42" cy="23.03" r="2.81" style="--i:0"/>
+            <circle cx="50.63" cy="15.01" r="3.61" style="--i:1"/>
+            <circle cx="56.94" cy="7.5" r="4.11" style="--i:2"/>
+            <circle cx="67.57" cy="4.49" r="4.51" style="--i:3"/>
+            <circle cx="78.7" cy="9.69" r="5.21" style="--i:4"/>
+            <circle cx="83.92" cy="21.62" r="5.41" style="--i:5"/>
+            <circle cx="84.14" cy="36.23" r="6.51" style="--i:6"/>
+          </svg>
         </div>
       </div>
     </section>
 
-    <!-- Promise strip -->
-    <section class="promise">
-      <div class="wrap promise-grid">
-        <div><strong>Plain English</strong><span>No jargon, no smoke and mirrors.</span></div>
-        <div><strong>Root causes</strong><span>We fix the problem, not just the symptom.</span></div>
-        <div><strong>People who care</strong><span>Your IT is our responsibility too.</span></div>
+    <!-- Trust band -->
+    <section class="trust" aria-label="Experience">
+      <div class="wrap trust-inner">
+        <div class="trust-years">
+          <span class="trust-num" data-years-since="2016">10</span>
+          <span class="trust-unit">years<br>caring for IT</span>
+        </div>
+        <p class="trust-text">Trusted by <strong>major schools and companies across the UK</strong> to keep their technology running and their people working.</p>
       </div>
     </section>
 
@@ -107,8 +118,40 @@
       </div>
     </section>
 
+    <!-- Who we work with -->
+    <section class="section section-tint" id="clients">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Who we work with</p>
+          <h2>Schools and companies across the UK</h2>
+        </header>
+        <div class="sectors">
+          <article class="sector">
+            <h3>Schools &amp; academies</h3>
+            <p>IT that works around the school day, so teachers can teach and pupils can learn.</p>
+            <ul>
+              <li>Wi-Fi that reaches every classroom</li>
+              <li>Filtering and online safety for pupils</li>
+              <li>Laptops, tablets and classroom screens kept running</li>
+              <li>Support for staff who need it now, not next week</li>
+            </ul>
+          </article>
+          <article class="sector">
+            <h3>Companies</h3>
+            <p>Dependable IT for offices, sites and remote teams, from a handful of people to large organisations.</p>
+            <ul>
+              <li>Servers, cloud and Microsoft 365 managed for you</li>
+              <li>Security that protects your data and reputation</li>
+              <li>New starters set up and ready on day one</li>
+              <li>One team to call, whatever the problem</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Approach -->
-    <section class="section section-tint" id="approach">
+    <section class="section" id="approach">
       <div class="wrap">
         <header class="section-head">
           <p class="eyebrow">How we work</p>
@@ -155,7 +198,7 @@
         <div>
           <p class="eyebrow">About Winet</p>
           <h2>An IT company that actually cares</h2>
-          <p>Winet was set up to give businesses the kind of IT support we'd want ourselves: reliable, responsive and honest. We treat your systems as if they were our own, and we treat you as a partner, not a ticket number.</p>
+          <p>For <span data-years-since="2016">10</span> years Winet has given schools and companies across the UK the kind of IT support we'd want ourselves: reliable, responsive and honest. We treat your systems as if they were our own, and we treat you as a partner, not a ticket number.</p>
           <p>We don't hide behind jargon. If something needs fixing, we'll say so. If it doesn't, we'll tell you that too, and we won't sell you anything you don't need.</p>
         </div>
         <ul class="values">
@@ -173,10 +216,9 @@
           <p class="eyebrow eyebrow-light">Get in touch</p>
           <h2>Tell us what's going on</h2>
           <p>Whether something's broken right now or you just want a straight answer about your setup, we're happy to help.</p>
-          <!-- TODO: replace with Winet's real contact details -->
           <ul class="contact-list">
-            <li><span>Email</span><a href="mailto:hello@winet.example" data-contact-email>hello@winet.example</a></li>
-            <li><span>Phone</span><a href="tel:+440000000000">00000 000000</a></li>
+            <li><span>Email</span><a href="mailto:service@win-net.co.uk" data-contact-email>service@win-net.co.uk</a></li>
+            <li><span>Phone</span><a href="tel:+447838048852">07838 048852</a></li>
           </ul>
         </div>
         <form class="contact-form" id="contact-form" novalidate>
@@ -190,6 +232,11 @@
       </div>
     </section>
   </main>
+
+  <div class="quick-contact" aria-label="Contact Winet">
+    <a class="qc-call" href="tel:+447838048852"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>Call 07838 048852</a>
+    <a class="qc-email" href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v12H3z M3 6l9 7 9-7" fill="none" stroke-width="2" stroke-linejoin="round"/></svg>Message</a>
+  </div>
 
   <footer class="site-footer">
     <div class="wrap footer-inner">
