@@ -33,7 +33,12 @@
     targets.forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
   }
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+  // Keep the footer year and the years-of-experience figures current
+  var thisYear = new Date().getFullYear();
+  document.getElementById('year').textContent = thisYear;
+  document.querySelectorAll('[data-years-since]').forEach(function (el) {
+    el.textContent = thisYear - Number(el.getAttribute('data-years-since'));
+  });
 
   // Contact form: no backend yet, so hand the message to the visitor's email client
   var form = document.getElementById('contact-form');
