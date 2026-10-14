@@ -40,10 +40,16 @@
     el.textContent = thisYear - Number(el.getAttribute('data-years-since'));
   });
 
-  // Contact form: no backend yet, so hand the message to the visitor's email client
+  // Contact form: sent through FormSubmit (formsubmit.co), which forwards each enquiry to Winet's inbox
   var form = document.getElementById('contact-form');
   var status = form.querySelector('.form-status');
+  var submit = form.querySelector('button[type="submit"]');
   var email = document.querySelector('[data-contact-email]').textContent.trim();
+
+  var setStatus = function (text, isError) {
+    status.textContent = text;
+    status.classList.toggle('is-error', !!isError);
+  };
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -54,29 +60,44 @@
       if (!ok) valid = false;
     });
     if (!valid) {
-      status.textContent = 'Please fill in your name, a valid email and a short message.';
+      setStatus('Please fill in your name, a valid email and a short message.', true);
       return;
     }
+
     var data = new FormData(form);
-    var subject = 'Website enquiry from ' + data.get('name') + (data.get('company') ? ' (' + data.get('company') + ')' : '');
-    var body = data.get('message') + '\n\n' + data.get('name') + '\n' + data.get('email');
-    window.location.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    // Many computers have no email app set up, so never claim it worked: give the address to copy too
-    status.innerHTML = '';
-    status.append('If your email app didn’t open, copy our address and send it from your usual email: ');
-    var copy = document.createElement('button');
-    copy.type = 'button';
-    copy.className = 'copy-email';
-    copy.textContent = email;
-    copy.addEventListener('click', function () {
-      var done = function () { copy.textContent = 'Copied ' + email; };
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(email).then(done, function () { window.getSelection().selectAllChildren(copy); });
-      } else {
-        window.getSelection().selectAllChildren(copy);
-      }
-    });
-    status.append(copy);
+    var payload = {
+      name: data.get('name'),
+      email: data.get('email'),
+      company: data.get('company') || '-',
+      message: data.get('message'),
+      _subject: 'Website enquiry from ' + data.get('name') + (data.get('company') ? ' (' + data.get('company') + ')' : ''),
+      _replyto: data.get('email'),
+      _honey: data.get('_honey') || '',
+      _template: 'table'
+    };
+
+    submit.disabled = true;
+    submit.textContent = 'Sending…';
+    setStatus('');
+
+    fetch('https://formsubmit.co/ajax/' + email, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (json) {
+        if (String(json.success) !== 'true') throw new Error(json.message || 'Not sent');
+        form.reset();
+        setStatus('Thanks, your message has been sent. We’ll be in touch soon.');
+      })
+      .catch(function () {
+        setStatus('Sorry, your message didn’t send. Please email ' + email + ' or call 07838 048852.', true);
+      })
+      .then(function () {
+        submit.disabled = false;
+        submit.textContent = 'Send message';
+      });
   });
 
   // Orange glow: trails the mouse on computers, follows a finger on touch screens
