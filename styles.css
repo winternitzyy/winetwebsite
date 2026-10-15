@@ -117,6 +117,13 @@ p { margin: 0 0 1em; }
 .hero-art img { object-fit: contain; }
 .hero-art, .hero-dots { overflow: visible; }
 
+/* The whole logo floats gently, with a slight sway, while its dots light up */
+.hero-art { animation: float 6s ease-in-out infinite; }
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(-1.5deg); }
+}
+
 /* The logo's dots light up one by one, like a connection being made, then ripple now and again */
 .hero-dots circle {
   fill: var(--blue);
@@ -267,6 +274,7 @@ p { margin: 0 0 1em; }
 .reveal.in { transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-art { animation: none; }
   html { scroll-behavior: auto; }
   .hero-dots circle { animation: none; }
   .reveal { transform: none; transition: none; }
