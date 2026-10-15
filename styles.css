@@ -117,6 +117,16 @@ p { margin: 0 0 1em; }
 .hero-art img { object-fit: contain; }
 .hero-art, .hero-dots { overflow: visible; }
 
+/* Soft circles behind the logo, drifting at their own pace for depth */
+.bubble { position: absolute; border-radius: 50%; background: var(--blue); opacity: .15; animation: drift 9s ease-in-out infinite; }
+.bubble.b1 { width: 22%; height: 22%; top: -4%; left: -8%; }
+.bubble.b2 { width: 11%; height: 11%; bottom: 4%; right: -4%; background: var(--orange); opacity: .28; animation-duration: 7s; animation-delay: -2s; }
+.bubble.b3 { width: 6%; height: 6%; bottom: 20%; left: -10%; animation-duration: 11s; animation-delay: -5s; }
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(8px, 12px); }
+}
+
 /* The whole logo floats gently, with a slight sway, while its dots light up */
 .hero-art { animation: float 6s ease-in-out infinite; }
 @keyframes float {
@@ -274,7 +284,7 @@ p { margin: 0 0 1em; }
 .reveal.in { transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-art { animation: none; }
+  .hero-art, .bubble { animation: none; }
   html { scroll-behavior: auto; }
   .hero-dots circle { animation: none; }
   .reveal { transform: none; transition: none; }
