@@ -42,6 +42,7 @@
 
   // Contact form: sent through FormSubmit (formsubmit.co), which forwards each enquiry to Winet's inbox
   var form = document.getElementById('contact-form');
+  if (form) {
   var status = form.querySelector('.form-status');
   var submit = form.querySelector('button[type="submit"]');
   var email = document.querySelector('[data-contact-email]').textContent.trim();
@@ -100,6 +101,7 @@
         submit.textContent = 'Send message';
       });
   });
+  }
 
   // Orange glow: trails the mouse on computers, follows a finger on touch screens
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

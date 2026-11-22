@@ -1,0 +1,69 @@
+---
+layout: base
+---
+{%- capture amazon_link -%}{% include amazon-url.html product=page %}{%- endcapture -%}
+<article class="section product-page">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="{{ '/products/' | relative_url }}">Recommended</a>
+      {% if page.category %}<span aria-hidden="true">/</span> <span>{{ page.category }}</span>{% endif %}
+    </nav>
+
+    <div class="product-grid">
+      <div class="product-media">
+        {% if page.image %}
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" loading="eager">
+        {% else %}
+          <div class="product-placeholder" aria-hidden="true">
+            <img src="{{ '/assets/winet-icon.png' | relative_url }}" alt="" width="96" height="96">
+            <span>{{ page.category | default: 'Recommended' }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="product-info">
+        {% if page.category %}<p class="eyebrow">{{ page.category }}</p>{% endif %}
+        <h1>{{ page.title }}</h1>
+        {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+        {% if page.best_for %}<p class="best-for"><strong>Best for:</strong> {{ page.best_for }}</p>{% endif %}
+
+        <div class="buy">
+          <a class="btn btn-buy" href="{{ amazon_link }}" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+          <p class="disclosure">Affiliate link: as an Amazon Associate, Winet earns from qualifying purchases, at no extra cost to you. Price and availability are shown on Amazon.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-body">
+      <div class="product-review">
+        <h2>Why we recommend it</h2>
+        {{ content }}
+      </div>
+
+      {% if page.pros or page.cons %}
+      <div class="pros-cons">
+        {% if page.pros %}
+        <div class="pc pc-pros">
+          <h3>What we like</h3>
+          <ul>{% for item in page.pros %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+        {% if page.cons %}
+        <div class="pc pc-cons">
+          <h3>Worth knowing</h3>
+          <ul>{% for item in page.cons %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <aside class="setup-cta">
+      <div>
+        <h2>Want it set up properly?</h2>
+        <p>We can install and configure this for your school or office, and make sure it works with everything else you run.</p>
+      </div>
+      <a class="btn" href="{{ '/#contact' | relative_url }}">Ask Winet</a>
+    </aside>
+  </div>
+</article>

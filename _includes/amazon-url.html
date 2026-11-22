@@ -1,0 +1,24 @@
+{%- comment -%}
+  The Amazon link for a product: its own amazon_url if given, otherwise amazon.co.uk/dp/ASIN.
+  The Associates tag from _config.yml is added unless the link already carries one
+  (amzn.to short links from SiteStripe already do).
+{%- endcomment -%}
+{%- assign p = include.product -%}
+{%- if p.amazon_url and p.amazon_url != "" -%}
+  {%- assign base = p.amazon_url -%}
+{%- else -%}
+  {%- assign base = "https://www.amazon.co.uk/dp/" | append: p.asin -%}
+{%- endif -%}
+{%- assign link = base -%}
+{%- if site.amazon_tag != "" -%}
+  {%- if base contains "amazon." -%}
+    {%- unless base contains "tag=" -%}
+      {%- if base contains "?" -%}
+        {%- assign link = base | append: "&tag=" | append: site.amazon_tag -%}
+      {%- else -%}
+        {%- assign link = base | append: "?tag=" | append: site.amazon_tag -%}
+      {%- endif -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endif -%}
+{{- link -}}

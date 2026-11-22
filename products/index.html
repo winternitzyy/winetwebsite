@@ -1,0 +1,46 @@
+---
+layout: base
+title: Recommended tech
+description: IT equipment and software Winet recommends to schools and businesses, chosen by people who install and support it every day.
+---
+{%- assign items = site.products | sort: "title" -%}
+<section class="section products-hero">
+  <div class="wrap">
+    <p class="eyebrow">Recommended</p>
+    <h1>Kit we actually recommend</h1>
+    <p class="lead">Equipment and software we install and support for schools and businesses. If we wouldn’t put it in a client’s office, it isn’t on this list.</p>
+    <p class="disclosure">Links on this page go to Amazon. As an Amazon Associate, Winet earns from qualifying purchases, at no extra cost to you.</p>
+  </div>
+</section>
+
+<section class="section products-list">
+  <div class="wrap">
+    {% if items.size > 0 %}
+    <div class="product-cards">
+      {% for p in items %}
+      {%- capture amazon_link -%}{% include amazon-url.html product=p %}{%- endcapture -%}
+      <article class="product-card">
+        <a class="pcard-media" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true">
+          {% if p.image %}<img src="{{ p.image | relative_url }}" alt="" loading="lazy">
+          {% else %}<span class="product-placeholder small"><img src="{{ '/assets/winet-icon.png' | relative_url }}" alt="" width="56" height="56"></span>{% endif %}
+        </a>
+        <div class="pcard-body">
+          {% if p.category %}<p class="eyebrow">{{ p.category }}</p>{% endif %}
+          <h2><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h2>
+          {% if p.summary %}<p>{{ p.summary }}</p>{% endif %}
+          <div class="pcard-actions">
+            <a class="btn btn-small btn-ghost" href="{{ p.url | relative_url }}">Our review</a>
+            <a class="btn btn-small btn-buy" href="{{ amazon_link }}" target="_blank" rel="sponsored nofollow noopener">View on Amazon</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+      <h2>Recommendations coming soon</h2>
+      <p>We’re writing up the equipment we trust most. In the meantime, <a href="{{ '/#contact' | relative_url }}">ask us</a> and we’ll tell you what we’d buy.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
