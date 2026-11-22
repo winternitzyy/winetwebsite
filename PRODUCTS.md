@@ -47,6 +47,10 @@ Your own review in plain English. Why you recommend it, who it's for, any setup 
 | `best_for` | Optional | Who it suits. |
 | `pros` / `cons` | Optional | Bullet lists. |
 | `image` | Optional | Your own photo uploaded to `assets/products/`, e.g. `/assets/products/router.jpg`. |
+| `brand` | Optional | The maker, e.g. Ubiquiti. Helps Google understand the product. |
+| `rating` | Recommended | Your score out of 5, e.g. `4.5`. Shown as stars and can appear as stars in Google results. Only give a score you honestly stand behind. |
+| `faq` | Optional | Questions and answers (see the example file). Shown on the page and can appear in Google results. |
+| `seo_title` | Optional | A custom title for Google. Without it the title is "<title> review \| Winet". |
 | `published: false` | Optional | Keeps a product as a draft, off the live site. |
 
 ## Amazon Associates rules to keep in mind
@@ -58,3 +62,15 @@ Your own review in plain English. Why you recommend it, who it's for, any setup 
 - **Don't put affiliate links in emails, PDFs or messages.** Send customers the win-net.co.uk product page
   instead; they click through to Amazon from there.
 - The "As an Amazon Associate, Winet earns from qualifying purchases" disclosure is added automatically on every page.
+
+## SEO that happens automatically
+
+Every product page gets, with no extra work:
+- a search title ("<Product> review | Winet") and description (from `summary`);
+- a canonical link and social-sharing previews (Facebook, LinkedIn, WhatsApp, X);
+- structured data for Google: breadcrumbs, a product review with your `rating`, and FAQs from `faq`;
+- an entry in `sitemap.xml`, which Google and Bing read to find new pages;
+- links from other products in the same `category` ("More … we recommend").
+
+Tips: write the review in your own words (at least a few paragraphs), use the words people would
+search for (e.g. "best Wi-Fi for a classroom"), and keep the `category` names consistent.
