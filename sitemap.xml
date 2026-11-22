@@ -7,6 +7,10 @@ layout: null
   {%- if site.products.size > 0 %}
   <url><loc>{{ '/products/' | absolute_url }}</loc><lastmod>{{ site.time | date_to_xmlschema }}</lastmod></url>
   {%- endif %}
+  {%- assign service_pages = site.pages | where: "layout", "service" %}
+  {%- for p in service_pages %}
+  <url><loc>{{ p.url | absolute_url }}</loc><lastmod>{{ site.time | date_to_xmlschema }}</lastmod></url>
+  {%- endfor %}
   {%- for p in site.products %}
   <url><loc>{{ p.url | absolute_url }}</loc><lastmod>{{ p.last_updated | default: site.time | date_to_xmlschema }}</lastmod></url>
   {%- endfor %}
