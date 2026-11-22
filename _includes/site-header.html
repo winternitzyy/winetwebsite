@@ -1,0 +1,16 @@
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Winet home">
+      <img src="{{ '/assets/winet-logo.png' | relative_url }}" alt="Winet – Caring for your IT" width="640" height="317">
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+    <nav id="site-nav" class="site-nav">
+      <a href="{{ '/#services' | relative_url }}">Services</a>
+      <a href="{{ '/products/' | relative_url }}">Recommended</a>
+      <a href="{{ '/#about' | relative_url }}">About</a>
+      <a class="btn btn-small" href="{{ '/#contact' | relative_url }}">Get in touch</a>
+    </nav>
+  </div>
+</header>

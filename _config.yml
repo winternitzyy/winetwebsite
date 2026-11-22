@@ -1,0 +1,26 @@
+# Site settings for GitHub Pages (Jekyll). The home page (index.html) is hand-written;
+# the product pages under /products/ are built from the files in _products/.
+title: Winet
+url: https://win-net.co.uk
+
+# Your Amazon Associates tracking ID (e.g. winet-21). Every "View on Amazon" button adds it,
+# so commission is credited to Winet. Leave blank and the links still work, without commission.
+amazon_tag: ""
+
+collections:
+  products:
+    output: true
+    permalink: /products/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: products
+    values:
+      layout: product
+
+markdown: kramdown
+exclude:
+  - DEPLOY.md
+  - PRODUCTS.md
+  - README.md
