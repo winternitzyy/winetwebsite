@@ -1,0 +1,29 @@
+{%- comment -%}
+  Search and social tags for every built page. A page can set:
+  seo_title (overrides the <title>), summary/description (meta description), image (share image).
+  Product pages get "<Product> review" titles automatically.
+{%- endcomment -%}
+{%- if page.seo_title -%}
+  {%- assign seo_title = page.seo_title -%}
+{%- elsif page.layout == "product" -%}
+  {%- assign seo_title = page.title | append: " review | Winet" -%}
+{%- else -%}
+  {%- assign seo_title = page.title | append: " | Winet" -%}
+{%- endif -%}
+{%- assign seo_desc = page.summary | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 158 -%}
+{%- if page.image -%}{%- assign seo_image = page.image | absolute_url -%}{%- else -%}{%- assign seo_image = "/assets/winet-logo.png" | absolute_url -%}{%- endif -%}
+<title>{{ seo_title }}</title>
+<meta name="description" content="{{ seo_desc | escape }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+{% if page.published == false or page.noindex %}<meta name="robots" content="noindex">{% endif %}
+<meta property="og:site_name" content="Winet">
+<meta property="og:locale" content="en_GB">
+<meta property="og:type" content="{% if page.layout == 'product' %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ seo_title | escape }}">
+<meta property="og:description" content="{{ seo_desc | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ seo_image }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ seo_title | escape }}">
+<meta name="twitter:description" content="{{ seo_desc | escape }}">
+<meta name="twitter:image" content="{{ seo_image }}">

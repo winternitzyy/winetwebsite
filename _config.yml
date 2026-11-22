@@ -1,6 +1,7 @@
 # Site settings for GitHub Pages (Jekyll). The home page (index.html) is hand-written;
 # the product pages under /products/ are built from the files in _products/.
 title: Winet
+description: IT support for schools and businesses across the UK, from Westcliff-on-Sea, Essex. Straight to the core of the issue, no mumbo jumbo.
 url: https://win-net.co.uk
 
 # Your Amazon Associates tracking ID (e.g. winet-21). Every "View on Amazon" button adds it,

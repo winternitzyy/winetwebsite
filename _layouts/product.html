@@ -25,6 +25,12 @@ layout: base
         {% if page.category %}<p class="eyebrow">{{ page.category }}</p>{% endif %}
         <h1>{{ page.title }}</h1>
         {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
+        {% if page.rating %}
+        <p class="rating" aria-label="Our rating: {{ page.rating }} out of 5">
+          <span class="stars" style="--rating: {{ page.rating }}" aria-hidden="true"></span>
+          <strong>{{ page.rating }}/5</strong> Winet rating
+        </p>
+        {% endif %}
         {% if page.best_for %}<p class="best-for"><strong>Best for:</strong> {{ page.best_for }}</p>{% endif %}
 
         <div class="buy">
@@ -58,6 +64,30 @@ layout: base
       {% endif %}
     </div>
 
+    {% if page.faq %}
+    <section class="product-faq">
+      <h2>Questions people ask</h2>
+      {% for item in page.faq %}
+      <details>
+        <summary>{{ item.q }}</summary>
+        <p>{{ item.a }}</p>
+      </details>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {%- assign related = site.products | where: "category", page.category | where_exp: "p", "p.url != page.url" -%}
+    {%- if page.category and related.size > 0 -%}
+    <section class="related">
+      <h2>More {{ page.category | downcase }} we recommend</h2>
+      <ul>
+        {% for p in related limit: 4 %}
+        <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% if p.summary %}<span>{{ p.summary | truncate: 90 }}</span>{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    {%- endif -%}
+
     <aside class="setup-cta">
       <div>
         <h2>Want it set up properly?</h2>
@@ -67,3 +97,48 @@ layout: base
     </aside>
   </div>
 </article>
+
+{%- comment -%} Structured data for Google: breadcrumbs always; a product review when a rating is given; FAQs when listed. {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Winet", "item": {{ '/' | absolute_url | jsonify }} },
+    { "@type": "ListItem", "position": 2, "name": "Recommended", "item": {{ '/products/' | absolute_url | jsonify }} },
+    { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": {{ page.url | absolute_url | jsonify }} }
+  ]
+}
+</script>
+{% if page.rating %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ page.title | jsonify }},
+  "description": {{ page.summary | default: page.title | jsonify }},
+  {% if page.brand %}"brand": { "@type": "Brand", "name": {{ page.brand | jsonify }} },{% endif %}
+  {% if page.category %}"category": {{ page.category | jsonify }},{% endif %}
+  {% if page.image %}"image": {{ page.image | absolute_url | jsonify }},{% endif %}
+  {% if page.asin %}"sku": {{ page.asin | jsonify }},{% endif %}
+  "review": {
+    "@type": "Review",
+    "reviewRating": { "@type": "Rating", "ratingValue": {{ page.rating | jsonify }}, "bestRating": 5, "worstRating": 1 },
+    "author": { "@type": "Organization", "name": "Winet", "url": {{ '/' | absolute_url | jsonify }} },
+    "reviewBody": {{ content | strip_html | strip_newlines | truncate: 500 | jsonify }}
+  }
+}
+</script>
+{% endif %}
+{% if page.faq %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for item in page.faq %}{ "@type": "Question", "name": {{ item.q | jsonify }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.a | jsonify }} } }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
