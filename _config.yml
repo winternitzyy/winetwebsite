@@ -23,5 +23,6 @@ defaults:
 markdown: kramdown
 exclude:
   - DEPLOY.md
+  - tools/
   - PRODUCTS.md
   - README.md
