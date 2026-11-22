@@ -15,7 +15,7 @@
 <title>{{ seo_title }}</title>
 <meta name="description" content="{{ seo_desc | escape }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
-{% if page.published == false or page.noindex %}<meta name="robots" content="noindex">{% endif %}
+{% if page.published == false or page.noindex or page.noindex_when_empty and site.products.size == 0 %}<meta name="robots" content="noindex">{% endif %}
 <meta property="og:site_name" content="Winet">
 <meta property="og:locale" content="en_GB">
 <meta property="og:type" content="{% if page.layout == 'product' %}article{% else %}website{% endif %}">

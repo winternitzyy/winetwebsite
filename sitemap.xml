@@ -4,7 +4,9 @@ layout: null
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>{{ '/' | absolute_url }}</loc><lastmod>{{ site.time | date_to_xmlschema }}</lastmod></url>
+  {%- if site.products.size > 0 %}
   <url><loc>{{ '/products/' | absolute_url }}</loc><lastmod>{{ site.time | date_to_xmlschema }}</lastmod></url>
+  {%- endif %}
   {%- for p in site.products %}
   <url><loc>{{ p.url | absolute_url }}</loc><lastmod>{{ p.last_updated | default: site.time | date_to_xmlschema }}</lastmod></url>
   {%- endfor %}
