@@ -60,7 +60,7 @@ We've been looking after IT for schools and companies across the UK for over a d
 
 ## Plain English, no mumbo jumbo
 
-You shouldn't need a dictionary to understand your IT company. We explain what's wrong, what we recommend and why, and we won't sell you anything you don't need. If something doesn't need fixing, we'll tell you that too.
+Most IT companies talk in jargon. We talk to you like a person. We explain what's wrong, what we recommend and why, and we won't sell you anything you don't need. If something doesn't need fixing, we'll tell you that too.
 
 ## Getting started
 
