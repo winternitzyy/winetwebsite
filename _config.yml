@@ -6,7 +6,7 @@ url: https://win-net.co.uk
 
 # Your Amazon Associates tracking ID (e.g. winet-21). Every "View on Amazon" button adds it,
 # so commission is credited to Winet. Leave blank and the links still work, without commission.
-amazon_tag: ""
+amazon_tag: "winet0c-21"
 
 collections:
   products:
