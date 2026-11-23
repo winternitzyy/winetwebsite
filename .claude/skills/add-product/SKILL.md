@@ -12,7 +12,10 @@ product page with no questions asked, unless a required fact is missing.
 - ASIN = the 10 characters after `/dp/` or `/gp/product/` in the link. amazon.co.uk only; amzn.eu/amzn.to
   short links: ask for the full link or product name.
 - Specs come ONLY from what the user sends: the PDF/screenshot of the Amazon page (read it with the Read
-  tool, `pages` param), or pasted "About this item" text. Do not scrape or fetch Amazon (bot protection,
+  tool, `pages` param), a Google Drive link to that PDF (file id after /d/; read it with the Google Drive
+  `read_file_content` tool, which returns the text), or pasted "About this item" text.
+- Image-only PDFs (no text layer): render with `pdftoppm -r 150` and crop the title/bullets/description areas
+  with PIL; very tall single-page PDFs need cropping to be readable. Do not scrape or fetch Amazon (bot protection,
   and the Associates agreement forbids scraping). If no PDF/text was sent, ask for one in a single line.
 - Never copy Amazon prices or Amazon images onto the site. No price in the review text.
 - Note the SiteStripe "Commission rates" box if visible in the PDF (useful to tell the user).
